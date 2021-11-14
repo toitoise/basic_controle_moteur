@@ -24,11 +24,6 @@
 #define encoderData   12    // Data
 #define encoderSwitch 13    // Switch Button
 
-// Various defines
-#define motorInterfaceType  1   // Motor interface type (DRV8825 dir+steps)
-#define MAX_ROTATION    400000  // Max steps for motor
-
-
 //-------------------------------------------------------
 // LCD 20x4 Declaration (i2c pins connexion)
 //-------------------------------------------------------
@@ -41,16 +36,17 @@ LiquidCrystal_I2C lcd(0x27, 20, 4);
 //-------------------------------------------------------
 #define comparator     2
 
-// Ppou calcul de la période avec HALL sensor
+// Pour calcul de la période avec HALL sensor (suite à l'interruption)
 volatile unsigned long periode       = 0;
 volatile unsigned long currentmillis  = 0;
 volatile unsigned long previousmillis   = 0;
 
-
-
 //-------------------------------------------------------
-// DRV8825 instance 
+// Driver moteur DRV8825 declaration 
 //-------------------------------------------------------
+// Various defines
+#define motorInterfaceType  1   // Motor interface type (DRV8825 dir+steps)
+#define MAX_ROTATION    400000  // Max steps for motor
 AccelStepper myStepper(motorInterfaceType, step, dir);
 
 // Variables traitement bouton rotatif et click
